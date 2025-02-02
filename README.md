@@ -1,3 +1,66 @@
+
+# Mocks - ENTREGA 1 DEL PROYECTO FINAL BACKEND 3
+
+Esta parte del proyecto implementa un router dedicado a la generación de datos falsos (mocks), el cual se monta en la ruta base **/api/mocks**. En este router se incluyen los siguientes endpoints:
+
+---
+
+## 1. GET `/api/mocks/mockingpets`
+
+**Ejemplo de respuesta:**
+
+```json
+{
+  "status": "success",
+  "payload": [
+    {
+      "name": "Misty",
+      "species": "cat",
+      "age": 5
+    },
+    {
+      "name": "Buddy",
+      "species": "dog",
+      "age": 3
+    }
+  ]
+}
+
+## 2. GET `/api/mocks/mockingusers`
+
+
+**Ejemplo de respuesta:**
+
+```json
+{
+  "status": "success",
+  "payload": [
+    {
+      "first_name": "Alice",
+      "last_name": "Smith",
+      "email": "alice.smith@example.com",
+      "age": 28,
+      "password": "$2b$10$xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "role": "admin",
+      "pets": []
+    }
+  ]
+}
+
+## 3. POST `/api/mocks/generateData`
+
+
+**Ejemplo de Body:**
+
+```json
+{
+  "users": 20,
+  "pets": 10
+}
+
+
+
+
 ## **Cómo utilizar las API's con ejemplos**
 
 ### **1. Crear un administrador y un usuario**

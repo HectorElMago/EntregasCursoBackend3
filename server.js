@@ -10,6 +10,7 @@ const cartsRouter = require("./routes/carts");
 const usersRouter = require("./routes/users");
 const passport = require("./config/passport");
 const authRouter = require("./routes/auth");
+const mocksRouter = require("./routes/mocks.router")
 
 // Conectar a MongoDB Atlas
 mongoose
@@ -43,6 +44,7 @@ app.use("/api/products", productsRouter);
 app.use("/api/carts", cartsRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/sessions", authRouter);
+app.use("/api/mocks", mocksRouter);
 
 app.get("/realtimeproducts", (req, res) => {
   res.render("realTimeProducts", { title: "Productos en tiempo real" });
