@@ -1,7 +1,10 @@
+# Docker - ENTREGA DEL PROYECTO FINAL BACKEND 3
 
-# Mocks - ENTREGA 1 DEL PROYECTO FINAL BACKEND 3
+Para construir la imagen de Docker, utiliza el siguiente comando: `docker build -t backend-image .`
+Para iniciar el servidor, ejecuta: `docker run --env-file .env -p 8080:8080 backend-image`, asegurándote de que el archivo `.env` esté en el mismo directorio.
+La documentación está disponible en Swagger en: [http://localhost:8080/api-docs/#/](http://localhost:8080/api-docs/#/)
 
-Esta parte del proyecto implementa un router dedicado a la generación de datos falsos (mocks), el cual se monta en la ruta base **/api/mocks**. En este router se incluyen los siguientes endpoints:
+Puedes encontrar la imagen en DockerHub en el siguiente enlace: [DockerHub - cursobackend3](https://hub.docker.com/repository/docker/hectorelmago/cursobackend3/general)
 
 ---
 
@@ -9,7 +12,7 @@ Esta parte del proyecto implementa un router dedicado a la generación de datos 
 
 **Ejemplo de respuesta:**
 
-```json
+````json
 {
   "status": "success",
   "payload": [
@@ -80,7 +83,7 @@ Esta parte del proyecto implementa un router dedicado a la generación de datos 
   "password": "adminpassword",
   "role": "admin"
 }
-```
+````
 
 #### **Crear un usuario estándar**
 

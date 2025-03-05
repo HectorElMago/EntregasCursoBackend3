@@ -4,6 +4,37 @@ const Product = require("../models/Product");
 const passport = require("passport");
 const authorization = require("../middlewares/authorization");
 
+/**
+ * @swagger
+ * tags:
+ *   name: Productos
+ *   description: Endpoints para la gestión de productos
+ */
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Product:
+ *       type: object
+ *       properties:
+ *         title:
+ *           type: string
+ *           example: "Producto de ejemplo"
+ *         description:
+ *           type: string
+ *           example: "Descripción del producto"
+ *         price:
+ *           type: number
+ *           example: 100
+ *         category:
+ *           type: string
+ *           example: "Electrónica"
+ *         stock:
+ *           type: number
+ *           example: 50
+ */
+
 // GET /api/products - Obtener productos (disponible para todos los usuarios autenticados)
 router.get(
   "/",
@@ -55,6 +86,49 @@ router.get(
   }
 );
 
+/**
+ * @swagger
+ * /api/products:
+ *   get:
+ *     summary: Obtener la lista de productos con paginación y filtros.
+ *     tags: [Productos]
+ *     parameters:
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *         description: Cantidad de productos por página (por defecto 10).
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *         description: Número de página (por defecto 1).
+ *       - in: query
+ *         name: sort
+ *         schema:
+ *           type: string
+ *           enum: [asc, desc]
+ *         description: Ordenar por precio.
+ *       - in: query
+ *         name: query
+ *         schema:
+ *           type: string
+ *         description: Filtro por categoría o estado.
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Lista de productos.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Product'
+ *       500:
+ *         description: Error en el servidor.
+ */
+
 // POST /api/products - Crear un producto (solo para admin)
 router.post(
   "/",
@@ -88,6 +162,31 @@ router.post(
     }
   }
 );
+
+/**
+ * @swagger
+ * /api/products:
+ *   post:
+ *     summary: Crear un nuevo producto (solo para administradores).
+ *     tags: [Productos]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Product'
+ *     responses:
+ *       201:
+ *         description: Producto creado exitosamente.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Product'
+ *       500:
+ *         description: Error en el servidor.
+ */
 
 // DELETE /api/products/:id - Eliminar un producto (solo para admin)
 router.delete(

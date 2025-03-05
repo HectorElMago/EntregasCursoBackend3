@@ -10,18 +10,20 @@ const User = require("../models/User");
 // Importa (o crea) el modelo de Pet. Asegúrate de tenerlo definido.
 const Pet = require("../models/Pet");
 
-//////////////////////////////////////////////
-// Endpoint para generar mascotas mock
-//////////////////////////////////////////////
+/**
+ * @swagger
+ * tags:
+ *   name: Mocks
+ *   description: Endpoints para generación de datos mock
+ */
+
 router.get("/mockingpets", (req, res) => {
   const pets = [];
-  // Generamos 50 mascotas con datos falsos
   for (let i = 0; i < 50; i++) {
     const pet = {
-      name: faker.animal.cat(), // o faker.animal.dog() según lo necesites
+      name: faker.animal.cat(),
       species: faker.helpers.arrayElement(["dog", "cat", "bird", "fish"]),
-      age: faker.number.int({ min: 1, max: 15 }), // anterior: faker.datatype.number({ min: 1, max: 15 })
-      // Agrega más propiedades si es necesario
+      age: faker.number.int({ min: 1, max: 15 }),
     };
     pets.push(pet);
   }
@@ -31,8 +33,31 @@ router.get("/mockingpets", (req, res) => {
 //////////////////////////////////////////////
 // Endpoint para generar usuarios mock
 //////////////////////////////////////////////
+/**
+ * @swagger
+ * /api/mockingusers:
+ *   get:
+ *     summary: Obtener una lista de usuarios mock.
+ *     tags: [Mocks]
+ *     responses:
+ *       200:
+ *         description: Lista de usuarios mock generadas.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: "success"
+ *                 payload:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/User'
+ *       500:
+ *         description: Error en el servidor.
+ */
 router.get("/mockingusers", (req, res) => {
-  // Genera 50 usuarios utilizando el módulo mockingUsers
   const users = generateMockUsers(50);
   res.json({ status: "success", payload: users });
 });

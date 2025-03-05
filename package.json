@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "testMocha": "mocha test/Users/Users.test.js",
+    "testChai": "mocha test/Users/UsersChai.test.js",
+    "testSuper": "mocha test/Users/UsersSupertest.test.js"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +24,13 @@
     "mongoose": "^8.7.1",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
-    "socket.io": "^4.8.0"
+    "socket.io": "^4.8.0",
+    "supertest": "^6.1.6",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^11.1.0"
   }
 }
